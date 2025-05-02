@@ -1,1 +1,1 @@
-"# My Ecommerce Project" 
+"# My Ecommerce mini-mart Project " 

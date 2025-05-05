@@ -65,7 +65,7 @@ const CheckoutPage = () => {
                 <hr />
                 <div className="d-flex justify-content-between">
                   <span><strong>Total Payable</strong></span>
-                  <span><strong>₹{totalPayable}</strong></span>
+                  <span><strong>₹{totalPrice}</strong></span>
                 </div>
               </div>
   

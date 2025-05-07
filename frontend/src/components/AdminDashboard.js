@@ -77,11 +77,13 @@ const AdminDashboard = () => {
     if (isEditing) {
       // You may need to update the PUT method to handle multipart/form-data
       await axios.put(`http://localhost:5000/api/products/${currentProduct.id}`, formData);
+      alert('Product updated successfully!');
 
     } else {
       await axios.post('http://localhost:5000/api/products', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
+      alert('Product added successfully!');
     }
   
     fetchProducts();
@@ -184,7 +186,9 @@ const AdminDashboard = () => {
             
             <Card.Body>
                 <Card.Title>{product.name}</Card.Title>
-                <Card.Text>Price: ₹{product.price}</Card.Text>
+                {/* <Card.Text>Price: ₹{product.price}</Card.Text> */}
+                <Card.Text>Price: ₹{parseFloat(product.price).toFixed(2)}</Card.Text>
+
                 <Card.Text>Description: {product.description}</Card.Text>
                 {/* <Card.Text>Category: {product.category}</Card.Text> */}
                 <Card.Text>Category: {product.category_name}</Card.Text>

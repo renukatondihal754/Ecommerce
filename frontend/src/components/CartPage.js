@@ -27,6 +27,25 @@ const CartPage = () => {
     navigate("/checkout");
   };
 
+  const handleIncrease = (id) => {
+    setCartItems(prev =>
+      prev.map(item =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+  
+  const handleDecrease = (id) => {
+    setCartItems(prev =>
+      prev.map(item =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
+
+  
   return (
     <div>
       <Navbar />
@@ -50,11 +69,17 @@ const CartPage = () => {
                   <p>Seller: {item.seller || "DefaultSeller"}</p>
                   <p className="text-success">₹{item.price}</p>
                 </div>
-                <div className="col-md-2 d-flex align-items-center">
+                {/* <div className="col-md-2 d-flex align-items-center">
                   <button className="btn btn-outline-secondary">-</button>
                   <span className="mx-2">{item.quantity}</span>
                   <button className="btn btn-outline-secondary">+</button>
+                </div> */}
+                <div className="col-md-2 d-flex align-items-center">
+                  <button className="btn btn-outline-secondary" onClick={() => handleDecrease(item.id)}>-</button>
+                  <span className="mx-2">{item.quantity}</span>
+                  <button className="btn btn-outline-secondary" onClick={() => handleIncrease(item.id)}>+</button>
                 </div>
+
                 <div className="col-md-2 text-end">
                   <button className="btn btn-link text-danger" onClick={() => handleDelete(item.id)}>Remove</button>
                 </div>
